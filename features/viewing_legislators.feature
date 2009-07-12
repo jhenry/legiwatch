@@ -8,29 +8,19 @@ Feature: Viewing legislators
     Given no legislators
     When I go to the legislators page
     Then I should see "No legislators registered"
-  
-  Scenario: Viewing non-empty legislator list
-    Given the legislator
-    | first_name | last_name |
-    | Bob | Dobbs |
-    When I go to the legislators page
-    Then I should see the legislator
-  
-  Scenario: Viewing 2 legislator list
-    Given the legislators
-    | first_name| last_name |
-    | Bob       | Dobbs     |
-    | Steven    | Cartwright|
-    When I go to the legislators page
-    Then I should see the legislators
-  
-  @focus
-  Scenario: Viewing 5 legislators
-    Given 5 legislators
+
+  Scenario Outline: Viewing <legislator_count> legislators
+    Given <legislator_count> legislators
     When I go to the legislators page
     Then I should see the legislators
     And I should not see "No legislators registered"
   
+  Examples:
+  | legislator_count|
+  | 1               |
+  | 2               |
+  | 5               |
+  | 10              |
   
   
   
