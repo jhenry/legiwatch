@@ -1,7 +1,12 @@
+<h1>Legislators!</h1>
 <%- if @legislators.empty? -%>
 No legislators registered
+<%- else -%>
+<ul>
+<%- @legislators.each do |legislator| -%>
+<li><%= legislator.first_name %> <%= legislator.last_name %></li>
+<%- end -%>
+</ul>
 <%- end -%>
 
-<%- @legislators.each do |legislator| -%>
-<%= legislator.first_name %> <%= legislator.last_name %>
-<%- end -%>
+<%= link_to "New", new_legislator_path %>
