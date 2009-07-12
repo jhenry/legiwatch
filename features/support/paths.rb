@@ -10,13 +10,10 @@ module NavigationHelpers
     
     when /the homepage/
       '/'
-    when /the new legislatorprofiles page/
-      new_legislatorprofiles_path
 
-    when /the new legislator_profiles page/
-      new_legislator_profiles_path
-
-    
+    when /his update legislator page/
+      edit_legislator_path(@legislators.first)
+      
     # Add more mappings here.
     # Here is a more fancy example:
     #

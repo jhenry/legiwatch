@@ -17,4 +17,14 @@ class LegislatorsController < ApplicationController
     @legislators = Legislator.all
   end
   
+  def edit
+    @legislator = Legislator.find(params[:id])
+  end
+  
+  def update
+    @legislator = Legislator.find(params[:id])
+    @legislator.update_attributes(params[:legislator])
+    redirect_to legislators_path    
+  end
+  
 end

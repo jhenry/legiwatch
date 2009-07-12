@@ -1,0 +1,10 @@
+<% form_for @legislator do |f| -%>
+  
+  <p><%= f.label :first_name, "First Name" %><br />
+  <%= f.text_field :first_name %></p>
+  
+  <p><%= f.label :last_name, "Last Name" %><br />
+  <%= f.text_field :last_name %></p>
+  
+  <%= f.submit "Update", :disable_with => 'Updating...' %>
+<% end -%>

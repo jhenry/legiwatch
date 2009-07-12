@@ -4,7 +4,7 @@ No legislators registered
 <%- else -%>
 <ul>
 <%- @legislators.each do |legislator| -%>
-<li><%= legislator.first_name %> <%= legislator.last_name %></li>
+<li><%= legislator.first_name %> <%= legislator.last_name %> (<%= link_to "edit", edit_legislator_path(legislator) %>)</li>
 <%- end -%>
 </ul>
 <%- end -%>

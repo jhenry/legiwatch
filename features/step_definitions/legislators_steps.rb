@@ -18,7 +18,7 @@ Given /^the legislators$/ do |table|
   end
 end
 
-Given /^(\d*) legislators$/ do |legislator_count|
+Given /^(\d*) legislators?$/ do |legislator_count|
   @legislators = []
   legislator_count.to_i.times do 
     @legislators << Factory(:legislator)

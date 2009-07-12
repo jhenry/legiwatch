@@ -1,5 +1,14 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe LegislatorsController, "Get index" do
+  it "assigns all legislators" do
+    legislators = []
+    Legislator.stub!(:all).and_return legislators
+    get :index
+    assigns[:legislators].should be(legislators)
+  end
+end
+
 
 describe LegislatorsController, "Get new" do
 
@@ -10,15 +19,6 @@ describe LegislatorsController, "Get new" do
     assigns[:legislator].should be(legislator)
   end
   
-end
-
-describe LegislatorsController, "Get index" do
-  it "assigns all legislators" do
-    legislators = []
-    Legislator.stub!(:all).and_return legislators
-    get :index
-    assigns[:legislators].should be(legislators)
-  end
 end
 
 describe LegislatorsController, "POST create" do
@@ -73,3 +73,52 @@ describe LegislatorsController, "POST create" do
   end
   
 end
+
+
+describe LegislatorsController, "Get edit" do
+  before(:each) do
+    @legislator = mock(Legislator)
+    Legislator.stub!(:find).and_return @legislator
+  end
+  
+  it "responds successfully" do
+    get :edit, :id => '1'
+    response.should be_success
+  end
+  
+  it "finds the requested legislator" do
+    id = "1"
+    Legislator.should_receive(:find).with id
+    get :edit, :id => id
+  end
+  it "assigns the requested legislator" do
+    get :edit, :id => "1"
+    assigns[:legislator].should be(@legislator)
+  end
+end
+
+
+describe LegislatorsController, "Get update" do
+  before(:each) do
+    @legislator = mock_model(Legislator)
+    Legislator.stub!(:find).and_return @legislator
+    @legislator.stub!(:update_attributes)
+  end
+  it "redirects to the index" do
+    put :update, :id => "1", :legislator => {}
+    response.should redirect_to(legislators_path)
+  end
+  
+  it "updates the legislator" do
+    attributes = {"first_name" => 'cool', "last_name" => 'moe dee'}
+    @legislator.should_receive(:update_attributes).with attributes
+    put :update, :id => "1", :legislator => attributes
+  end
+  
+end
+
+
+
+
+
+
