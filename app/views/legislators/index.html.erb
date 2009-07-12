@@ -1,1 +1,7 @@
-Bob Dobbs
+<%- if @legislators.empty? -%>
+No legislators registered
+<%- end -%>
+
+<%- @legislators.each do |legislator| -%>
+<%= legislator.first_name %> <%= legislator.last_name %>
+<%- end -%>

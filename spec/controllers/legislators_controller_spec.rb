@@ -12,6 +12,15 @@ describe LegislatorsController, "Get new" do
   
 end
 
+describe LegislatorsController, "Get index" do
+  it "assigns all legislators" do
+    legislators = []
+    Legislator.stub!(:all).and_return legislators
+    get :index
+    assigns[:legislators].should be(legislators)
+  end
+end
+
 describe LegislatorsController, "POST create" do
   
   before(:each) do

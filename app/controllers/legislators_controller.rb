@@ -13,4 +13,8 @@ class LegislatorsController < ApplicationController
     @legislator = Legislator.new
   end
   
+  def index
+    @legislators = Legislator.all
+  end
+  
 end
