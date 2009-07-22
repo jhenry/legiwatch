@@ -27,4 +27,8 @@ class LegislatorsController < ApplicationController
     redirect_to legislators_path    
   end
   
+  def show
+    @legislator = Legislator.find(params[:id])
+  end
+  
 end

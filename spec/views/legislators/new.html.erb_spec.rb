@@ -33,4 +33,64 @@ describe "legislators/new.html.erb" do
     )
   end
   
+  it "renders a text field for the legislators street address" do
+    @legislator.stub!(:address1).and_return "21 Oak Street"
+    render "legislators/new.html.erb"
+      response.should have_selector(
+        "input[type=text]",
+        :name => "legislator[address1]",
+        :value => @legislator.address1
+      )
+   end
+   
+   it "renders a text field for the legislators secondary street address" do
+     @legislator.stub!(:address2).and_return "Apt. 4"
+     render "legislators/new.html.erb"
+       response.should have_selector(
+         "input[type=text]",
+         :name => "legislator[address2]",
+         :value => @legislator.address2
+       )
+    end
+   
+    it "renders a text field for the legislators town" do
+      @legislator.stub!(:town).and_return "Anytown"
+      render "legislators/new.html.erb"
+       response.should have_selector(
+         "input[type=text]",
+         :name => "legislator[town]",
+         :value => @legislator.town
+       )
+    end
+    
+    it "renders a text field for the legislators state" do
+      @legislator.stub!(:state).and_return "ME"
+      render "legislators/new.html.erb"
+      response.should have_selector(
+        "input[type=text]",
+        :name => "legislator[state]",
+        :value => @legislator.state
+      )
+   end 
+   
+   it "renders a text field for the legislators zip code" do
+     @legislator.stub!(:zip).and_return "04102"
+     render "legislators/new.html.erb"
+     response.should have_selector(
+       "input[type=text]",
+       :name => "legislator[zip]",
+       :value => @legislator.zip
+     )
+  end
+  
+  it "renders a text field for the legislators extended zip code" do
+    @legislator.stub!(:zip4).and_return "1234"
+    render "legislators/new.html.erb"
+     response.should have_selector(
+       "input[type=text]",
+       :name => "legislator[zip4]",
+       :value => @legislator.zip4
+     )
+  end
+  
 end

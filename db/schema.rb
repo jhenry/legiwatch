@@ -14,6 +14,12 @@ ActiveRecord::Schema.define(:version => 20090710031714) do
   create_table "legislators", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "town"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "zip4"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

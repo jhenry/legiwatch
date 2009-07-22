@@ -4,9 +4,13 @@ No legislators registered
 <%- else -%>
 <ul>
 <%- @legislators.each do |legislator| -%>
-<li><%= legislator.first_name %> <%= legislator.last_name %> (<%= link_to "edit", edit_legislator_path(legislator) %>)</li>
+<li><%= link_to "#{legislator.first_name} #{legislator.last_name}", legislator_path(legislator) %>  (<%= link_to "edit", edit_legislator_path(legislator) %>)</li>
 <%- end -%>
 </ul>
 <%- end -%>
+
+21 Oak Street
+Apt. 4
+Anytown, ME 04102-1234
 
 <%= link_to "New", new_legislator_path %>

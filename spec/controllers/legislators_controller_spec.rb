@@ -9,6 +9,14 @@ describe LegislatorsController, "Get index" do
   end
 end
 
+# describe LegislatorsController, "Get show" do
+#   it "assigns a legislator" do
+#     @legislator = mock(Legislator)
+#     Legislator.stub!(:find).and_return @legislator
+#     get :show, :id => id
+#     assigns[:legislator].should be(@legislator)
+#   end
+# end
 
 describe LegislatorsController, "Get new" do
 
@@ -97,6 +105,27 @@ describe LegislatorsController, "Get edit" do
   end
 end
 
+describe LegislatorsController, "Get show" do
+  before(:each) do
+    @legislator = mock(Legislator)
+    Legislator.stub!(:find).and_return @legislator
+  end
+  
+  it "responds successfully" do
+    get :show, :id => '1'
+    response.should be_success
+  end
+  
+  it "finds the requested legislator" do
+    id = "1"
+    Legislator.should_receive(:find).with id
+    get :show, :id => id
+  end
+  it "assigns the requested legislator" do
+    get :show, :id => "1"
+    assigns[:legislator].should be(@legislator)
+  end
+end
 
 describe LegislatorsController, "Get update" do
   before(:each) do
@@ -104,13 +133,23 @@ describe LegislatorsController, "Get update" do
     Legislator.stub!(:find).and_return @legislator
     @legislator.stub!(:update_attributes)
   end
+  
   it "redirects to the index" do
     put :update, :id => "1", :legislator => {}
     response.should redirect_to(legislators_path)
   end
   
   it "updates the legislator" do
-    attributes = {"first_name" => 'cool', "last_name" => 'moe dee'}
+    attributes = {
+      "first_name" => 'cool', 
+      "last_name" => 'moe dee', 
+      "address1" => '21 Oak Street', 
+      "address2" => 'Apt. 4',
+      "town" => 'Anytown',
+      "state" => 'ME',
+      "zip" => '04102',
+      "zip4" => '1234'
+      }
     @legislator.should_receive(:update_attributes).with attributes
     put :update, :id => "1", :legislator => attributes
   end
