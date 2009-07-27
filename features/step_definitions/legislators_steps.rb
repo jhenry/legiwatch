@@ -21,6 +21,11 @@ Given /^(\d*) legislators?$/ do |legislator_count|
   end
 end
 
+When /^I create a legislator$/ do |legislator|
+  When %{I fill in legislator information}, legislator 
+  And %{I press "Create"}  
+end
+
 When /^I fill in legislator information$/ do |table|
   data = table.hashes[0]
   first_name = data[:first_name]

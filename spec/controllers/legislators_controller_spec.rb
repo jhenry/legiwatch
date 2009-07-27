@@ -56,9 +56,9 @@ describe LegislatorsController, "POST create" do
       flash[:notice].should == "The legislator was saved successfully."
     end
     
-    it "should redirect to the legislators index" do
+    it "should redirect to the legislator's profile page" do
       post :create
-      response.should redirect_to(legislators_path)
+      response.should redirect_to(legislator_path(@legislator))
     end
         
   end
@@ -81,7 +81,6 @@ describe LegislatorsController, "POST create" do
   end
   
 end
-
 
 describe LegislatorsController, "Get edit" do
   before(:each) do
@@ -136,7 +135,7 @@ describe LegislatorsController, "Get update" do
   
   it "redirects to the index" do
     put :update, :id => "1", :legislator => {}
-    response.should redirect_to(legislators_path)
+    response.should redirect_to(legislator_path(@legislator))
   end
   
   it "updates the legislator" do

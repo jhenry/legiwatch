@@ -3,7 +3,7 @@ class LegislatorsController < ApplicationController
     @legislator = Legislator.new params[:legislator]
     if @legislator.save
       flash[:notice] = "The legislator was saved successfully."
-      redirect_to legislators_path
+      redirect_to legislator_path(@legislator)
     else
       render :action => "new"
     end
@@ -24,7 +24,7 @@ class LegislatorsController < ApplicationController
   def update
     @legislator = Legislator.find(params[:id])
     @legislator.update_attributes(params[:legislator])
-    redirect_to legislators_path    
+    redirect_to legislator_path(@legislator)    
   end
   
   def show
