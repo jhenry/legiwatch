@@ -1,0 +1,24 @@
+- form_for @legislator do |f|
+  %p 
+    = f.label :first_name, "First Name"
+    = f.text_field :first_name
+  %p
+    = f.label :last_name, "Last Name"
+    = f.text_field :last_name 
+  %p 
+    = f.label :address1, "Address"
+    = f.text_field :address1
+  %p
+    = f.label :address2, "Address 2"
+    = f.text_field :address2
+  %p
+    = f.label :town, "Town"
+    = f.text_field :town
+  %p
+    = f.label :state, "State"
+    = f.text_field :state
+  %p
+    = "#{f.label :zip, 'Zip Code'} #{f.label :zip4, '+4'}"
+    = "#{f.text_field :zip} - #{f.text_field :zip4}"
+  %p
+    = f.submit "Create", :disable_with => 'Creating...'
